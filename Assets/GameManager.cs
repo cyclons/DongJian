@@ -1,21 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-
-    
+public class GameManager : NetworkBehaviour
 {
     public enum PlayerState
     {
         take,
         notTake
     }
+    
+    [SyncVar(hook="ScoreChanged")]
+    public int Score;
+	[SyncVar(hook = "ClientScoreChanged")]
+	public int ClientScore;
 
-
-    public int Score = 0;
     public Text ScoreUi;
+    public Text ClientScoreUi;
     public Transform CameraJoint;
     public PlayerState CurrentPlayerState=PlayerState.notTake;
     public static GameManager Instance;
@@ -27,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public void TakeObject(GameObject takenObject)
     {
+        
         Instantiate(takenObject, CameraJoint.position, CameraJoint.rotation).transform.SetParent(CameraJoint);
         CurrentPlayerState=PlayerState.take;
         TakeUi.SetActive(false);
@@ -71,20 +75,48 @@ public class GameManager : MonoBehaviour
 
     public void AddScore()
     {
-        Score += 15;
-        ScoreUi.text = "Score:" + Score;
+		if (!isClient) {
+			Score += 15;
+            ScoreUi.text = "Player1Score:" + Score;
+		} else {
+			ClientScore += 15;
+		    ClientScoreUi.text = "Player2Score:" + ClientScore;
+		}
     }
 
     public void ReduceScore()
     {
-        Score -= 10;
-        if (Score <= 0)
-        {
-            Score = 0;
-        }
-        ScoreUi.text = "Score:" + Score;
-
+		if (!isClient)
+		{
+			Score -= 10;
+            if (Score <= 0)
+            {
+                Score = 0;
+            }
+            ScoreUi.text = "Player1Score:" + Score;         
+		}
+		else
+		{
+			ClientScore -= 10;
+			if (ClientScore <= 0)
+            {
+				ClientScore = 0;
+            }
+		    ClientScoreUi.text = "Player2Score:" + ClientScore;	
+		}
     }
+
+	void ScoreChanged(int value) {
+		Score = value;
+		ScoreUi.text = "Player1Score:" + Score;
+	}
+
+	void ClientScoreChanged(int value)
+    {
+        ClientScore = value;
+        ClientScoreUi.text = "Player2Score:" + ClientScore;
+    }
+
     void Awake()
     {
         Instance = this;
