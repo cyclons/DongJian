@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0fdfb8699d80d0a49974b875f584fe0b
+timeCreated: 1527938902
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bell Gothic Std
+  fontNames:
+  - Bell Gothic Std
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
