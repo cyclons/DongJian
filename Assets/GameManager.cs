@@ -12,10 +12,10 @@ public class GameManager : NetworkBehaviour
         notTake
     }
 
-    [SyncVar]
-    public int Score = 0;
-    [SyncVar]
-	public int EnemyScore = 0;
+    [SyncVar(hook="ScoreChanged")]
+    public int Score;
+	[SyncVar(hook = "ClientScoreChanged")]
+	public int ClientScore;
 
     public Text ScoreUi;
     public Transform CameraJoint;
@@ -73,20 +73,48 @@ public class GameManager : NetworkBehaviour
 
     public void AddScore()
     {
-        Score += 15;
-        ScoreUi.text = "Score:" + Score;
+		if (!isClient) {
+			Score += 15;
+            ScoreUi.text = "Score:" + Score;
+		} else {
+			ClientScore += 15;
+			ScoreUi.text = "Score:" + ClientScore;
+		}
     }
 
     public void ReduceScore()
     {
-        Score -= 10;
-        if (Score <= 0)
-        {
-            Score = 0;
-        }
-        ScoreUi.text = "Score:" + Score;
-
+		if (!isClient)
+		{
+			Score -= 10;
+            if (Score <= 0)
+            {
+                Score = 0;
+            }
+            ScoreUi.text = "Score:" + Score;         
+		}
+		else
+		{
+			ClientScore -= 10;
+			if (ClientScore <= 0)
+            {
+				ClientScore = 0;
+            }
+			ScoreUi.text = "Score:" + ClientScore;	
+		}
     }
+
+	void ScoreChanged(int value) {
+		Score = value;
+		ScoreUi.text = "Score:" + Score;
+	}
+
+	void ClientScoreChanged(int value)
+    {
+        ClientScore = value;
+		ScoreUi.text = "Score:" + ClientScore;
+    }
+
     void Awake()
     {
         Instance = this;
