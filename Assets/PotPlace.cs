@@ -42,13 +42,20 @@ public class PotPlace : MonoBehaviour {
 	void Update () {
 	    if (CurrentPotState == PotState.empty)
 	    {
-	        ProcessSlider.gameObject.SetActive(false);
+	        cookingItem.SetActive(false);
+	        cookedItem.SetActive(false);
+	        overcookedItem.SetActive(false);
+
+
+            ProcessSlider.gameObject.SetActive(false);
 	        Tip.gameObject.SetActive(false);
 
         }
         if (CurrentPotState == PotState.cooking)
 	    {
-
+	        cookingItem.SetActive(true);
+	        cookedItem.SetActive(false);
+	        overcookedItem.SetActive(false);
             ProcessSlider.gameObject.SetActive(true);
 	        Tip.gameObject.SetActive(true);
 
@@ -59,27 +66,29 @@ public class PotPlace : MonoBehaviour {
 	        {
 	            CurrentPotState=PotState.goodCook;
 	            timer = 0;
-	            cookingItem.SetActive(false);
-	            cookedItem.SetActive(true);
-	            overcookedItem.SetActive(false);
+
             }
 	    }
 	    if (CurrentPotState == PotState.goodCook)
 	    {
-	        Tip.text = "IT IS COOKED~~";
+	        cookingItem.SetActive(false);
+	        cookedItem.SetActive(true);
+	        overcookedItem.SetActive(false);
+
+            Tip.text = "IT IS COOKED~~";
             timer += Time.deltaTime;
 	        if (timer >= OverCookTime)
 	        {
 	            CurrentPotState = PotState.badCook;
 	            timer = 0;
-	            cookingItem.SetActive(false);
-	            cookedItem.SetActive(false);
-	            overcookedItem.SetActive(true);
             }
         }
 	    if (CurrentPotState == PotState.badCook)
 	    {
-	        Tip.text = "OverCooked...";
+	        cookingItem.SetActive(false);
+	        cookedItem.SetActive(false);
+	        overcookedItem.SetActive(true);
+            Tip.text = "OverCooked...";
 	        Tip.color = Color.grey;
             ProcessSlider.gameObject.SetActive(false);
 
