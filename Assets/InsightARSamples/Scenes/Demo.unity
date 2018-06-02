@@ -1941,6 +1941,7 @@ MonoBehaviour:
   CurrentPlayerState: 1
   TakeUi: {fileID: 2004677871}
   PutUi: {fileID: 263913454}
+  cutItem: {fileID: 1174425247789426, guid: 68ccedda383da3347aaa136bd376225d, type: 2}
 --- !u!4 &693133142
 Transform:
   m_ObjectHideFlags: 0
@@ -2184,8 +2185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51596c782829d744fac180566fbc8222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasFood: 0
+  displayThings: {fileID: 815649806}
+  CurrentState: 0
   cutProcess: 0
+  ProcesSlider: {fileID: 1196663408}
 --- !u!1 &888037512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,7 +3537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80, y: -124.1}
+  m_AnchoredPosition: {x: 80, y: -49}
   m_SizeDelta: {x: 160, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1484958213
