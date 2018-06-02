@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-
-    
+public class GameManager : NetworkBehaviour
 {
     public enum PlayerState
     {
@@ -13,8 +12,11 @@ public class GameManager : MonoBehaviour
         notTake
     }
 
-
+    [SyncVar]
     public int Score = 0;
+    [SyncVar]
+	public int EnemyScore = 0;
+
     public Text ScoreUi;
     public Transform CameraJoint;
     public PlayerState CurrentPlayerState=PlayerState.notTake;
