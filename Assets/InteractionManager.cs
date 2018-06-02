@@ -15,19 +15,22 @@ public class InteractionManager : MonoBehaviour {
 
     public HoldType CurrentHoldType=HoldType.empty;
     public Text logText;
+
+    public Animator CutAnimator;
     //交互
     public void OnInteractButtonClick()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));//射线  
         //切菜交互
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
+        if (Physics.Raycast(ray, out hit,1))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
         {
             if (hit.collider.tag == "cut" &&
                 GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.notTake &&
                 hit.collider.GetComponent<CutPlace>().CurrentState == CutPlace.cutState.hasfood)
             {
                 hit.collider.SendMessage("DoCut");
+                CutAnimator.SetTrigger("cut");
             }
         }
     }
@@ -38,7 +41,7 @@ public class InteractionManager : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));//射线  
 
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
+        if (Physics.Raycast(ray, out hit,1))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
         {
             //拿食物
             if (hit.collider.tag == "food" && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.notTake)
@@ -86,7 +89,7 @@ public class InteractionManager : MonoBehaviour {
         
         RaycastHit hit;
         //从食物放到菜板
-        if (Physics.Raycast(ray, out hit))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
+        if (Physics.Raycast(ray, out hit,1))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
         {
             if (hit.collider.tag == "cut" && 
                 CurrentHoldType==HoldType.food&&

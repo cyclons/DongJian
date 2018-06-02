@@ -15,6 +15,7 @@ public class CutPlace : MonoBehaviour
         foodOk
     }
     public GameObject displayThings;
+    public GameObject finishedThings;
     public cutState CurrentState=cutState.nofood;
     public float cutProcess=0;
     public Slider ProcesSlider;
@@ -25,13 +26,20 @@ public class CutPlace : MonoBehaviour
     }
     void Update()
     {
-        if (CurrentState==cutState.foodOk||CurrentState==cutState.hasfood)
+        if (CurrentState==cutState.hasfood)
         {
             displayThings.SetActive(true);
             ProcesSlider.gameObject.SetActive(true);
+            finishedThings.SetActive(false);
+        }
+        else if (CurrentState == cutState.foodOk)
+        {
+            displayThings.SetActive(false);
+            finishedThings.SetActive(true);
         }
         else
         {
+            finishedThings.SetActive(false);
             displayThings.SetActive(false);
             ProcesSlider.gameObject.SetActive(false);
         }

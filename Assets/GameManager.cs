@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         }
         if (takenObjectName == "BadPotItem")
         {
-            Instantiate(GoodPotItem, CameraJoint.position, CameraJoint.rotation).transform.SetParent(CameraJoint);
+            Instantiate(BadPotItem, CameraJoint.position, CameraJoint.rotation).transform.SetParent(CameraJoint);
             CurrentPlayerState = PlayerState.take;
             TakeUi.SetActive(false);
             PutUi.SetActive(true);
