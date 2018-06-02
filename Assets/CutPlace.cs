@@ -19,22 +19,40 @@ public class CutPlace : MonoBehaviour
     public float cutProcess=0;
     public Slider ProcesSlider;
 
+    void Start()
+    {
+        ProcesSlider.value = 0;
+    }
     void Update()
     {
         if (CurrentState==cutState.foodOk||CurrentState==cutState.hasfood)
         {
             displayThings.SetActive(true);
+            ProcesSlider.gameObject.SetActive(true);
         }
         else
         {
             displayThings.SetActive(false);
+            ProcesSlider.gameObject.SetActive(false);
         }
+
     }
 
     public void DoCut()
     {
         cutProcess += 26;
         ProcesSlider.value = Mathf.Clamp(cutProcess / 100, 0, 1.01f);
+        if (cutProcess >= 100)
+        {
+            CurrentState=cutState.foodOk;
+        }
+    }
+
+    public void Reset()
+    {
+        CurrentState=cutState.nofood;
+        cutProcess = 0;
+        ProcesSlider.value = 0;
     }
 
 }
