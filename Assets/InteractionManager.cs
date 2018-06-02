@@ -14,12 +14,12 @@ public class InteractionManager : MonoBehaviour {
         if (Physics.Raycast(ray, out hit))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
         {
 
-            if (hit.collider.tag == "cut" &&
-                GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.notTake &&
-                hit.collider.GetComponent<CutPlace>().HasFood == true)
-            {
-                hit.collider.SendMessage("DoCut");
-            }
+            //if (hit.collider.tag == "cut" &&
+            //    GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.notTake &&
+            //    hit.collider.GetComponent<CutPlace>().HasFood == true)
+            //{
+            //    hit.collider.SendMessage("DoCut");
+            //}
         }
     }
 
@@ -46,12 +46,12 @@ public class InteractionManager : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
         {
-            if (hit.collider.tag == "cut" && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.take&&hit.collider.GetComponent<CutPlace>().HasFood==false)
-            {
-                logText.text = "putFood";
-                GameManager.Instance.PutObject();
-                hit.collider.GetComponent<CutPlace>().HasFood = true;
-            } 
+            //if (hit.collider.tag == "cut" && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.take&&hit.collider.GetComponent<CutPlace>().HasFood==false)
+            //{
+            //    logText.text = "putFood";
+            //    GameManager.Instance.PutObject();
+            //    hit.collider.GetComponent<CutPlace>().HasFood = true;
+            //} 
         }
     }
 }
