@@ -362,6 +362,7 @@ public class InsightARManager  : MonoBehaviour
 			+plane.identifier+")");
         GameObject go = CreatePlaneInScene(plane);
         m_AllPlanes.Add(go);
+        
     }
 
     private void OnPlaneUpdated(InsightARPlaneAnchor plane)
