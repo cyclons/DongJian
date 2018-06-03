@@ -8,8 +8,8 @@ public class GameManager : NetworkBehaviour
 {
     public enum PlayerState
     {
-        take,
-        notTake
+        take, // 拿了东西
+        notTake // 空
     }
     
     [SyncVar(hook="ScoreChanged")]
@@ -20,7 +20,7 @@ public class GameManager : NetworkBehaviour
     public Text ScoreUi;
     public Text ClientScoreUi;
     public Transform CameraJoint;
-    public PlayerState CurrentPlayerState=PlayerState.notTake;
+    public PlayerState CurrentPlayerState = PlayerState.notTake;
     public static GameManager Instance;
     public GameObject TakeUi;
     public GameObject PutUi;
@@ -75,35 +75,35 @@ public class GameManager : NetworkBehaviour
 
     public void AddScore()
     {
-		if (!isClient) {
+		//if (!isClient) {
 			Score += 15;
             ScoreUi.text = "Player1Score:" + Score;
-		} else {
-			ClientScore += 15;
-		    ClientScoreUi.text = "Player2Score:" + ClientScore;
-		}
+		//} else {
+			//ClientScore += 15;
+		    //ClientScoreUi.text = "Player2Score:" + ClientScore;
+		//}
     }
 
     public void ReduceScore()
     {
-		if (!isClient)
-		{
+		//if (!isClient)
+		//{
 			Score -= 10;
             if (Score <= 0)
             {
                 Score = 0;
             }
             ScoreUi.text = "Player1Score:" + Score;         
-		}
-		else
-		{
-			ClientScore -= 10;
-			if (ClientScore <= 0)
-            {
-				ClientScore = 0;
-            }
-		    ClientScoreUi.text = "Player2Score:" + ClientScore;	
-		}
+		//}
+		//else
+		//{
+		//	ClientScore -= 10;
+		//	if (ClientScore <= 0)
+  //          {
+		//		ClientScore = 0;
+  //          }
+		//    ClientScoreUi.text = "Player2Score:" + ClientScore;	
+		//}
     }
 
 	void ScoreChanged(int value) {

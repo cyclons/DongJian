@@ -10,9 +10,9 @@ public class CutPlace : MonoBehaviour
 
     public enum cutState
     {
-        nofood,
-        hasfood,
-        foodOk
+        nofood, // 空
+        hasfood, // 未切的东西
+        foodOk // 切好的东西
     }
     public GameObject displayThings;
     public GameObject finishedThings;
@@ -61,6 +61,18 @@ public class CutPlace : MonoBehaviour
         CurrentState=cutState.nofood;
         cutProcess = 0;
         ProcesSlider.value = 0;
+    }
+
+    public void PutFood() {
+        CurrentState = cutState.hasfood;
+    }
+
+    public void PutGoodFood() {
+        CurrentState = cutState.foodOk;
+    }
+
+    public void TakeFood() {
+        CurrentState = cutState.nofood;
     }
 
 }
