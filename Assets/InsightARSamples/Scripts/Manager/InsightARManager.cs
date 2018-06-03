@@ -293,6 +293,7 @@ public class InsightARManager  : MonoBehaviour
         }
         m_ARInterface.ResetAR(path);
         _enableShowIndicator = true;
+        hasObjectCreated = false;
     }
 
 
@@ -422,7 +423,7 @@ public class InsightARManager  : MonoBehaviour
     public void OnResetBtn()
     {
         DoResetAR("");
-        hasObjectCreated = false;
+        //hasObjectCreated = false;
     }
 
     public void OnChangeARBtn()

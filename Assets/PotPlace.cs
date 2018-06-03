@@ -7,10 +7,10 @@ public class PotPlace : MonoBehaviour {
 
     public enum PotState
     {
-        empty,
-        cooking,
-        goodCook,
-        badCook
+        empty, // 空
+        cooking, // 正在煮
+        goodCook, // 煮好的东西
+        badCook // 煮坏的东西
     }
 
     public GameObject cookingItem;
