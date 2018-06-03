@@ -23,7 +23,7 @@ public class InteractionManager : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));//射线  
         // 切菜交互
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
+        if (Physics.Raycast(ray, out hit,1))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
         {
             if (hit.collider.tag == "cut"
                 && CurrentHoldType == HoldType.empty
@@ -42,7 +42,7 @@ public class InteractionManager : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));//射线  
 
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
+        if (Physics.Raycast(ray, out hit,1))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
         {
             // 拿食物
             if (hit.collider.tag == "food" && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.notTake
@@ -104,7 +104,7 @@ public class InteractionManager : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));//射线  
         
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
+        if (Physics.Raycast(ray, out hit,1))//发射射线(射线，射线碰撞信息，射线长度，射线会检测的层级)  
         {
             // 放回食物
             if(hit.collider.tag == "food"
