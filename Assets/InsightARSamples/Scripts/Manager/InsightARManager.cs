@@ -388,6 +388,15 @@ public class InsightARManager  : MonoBehaviour
             plane.transform.localScale = Vector3.one;
             plane.transform.localPosition = Vector3.zero;
             plane.transform.localRotation = Quaternion.identity;
+            if(hasObjectCreated){
+                if(plane.GetComponent<MeshRenderer>()!=null){
+                    plane.GetComponent<MeshRenderer>().enabled = false;
+                }
+                if(plane.GetComponent<BoxCollider>()!=null){
+                    plane.GetComponent<BoxCollider>().enabled = false;
+                }
+
+            }
         }
         else
         {
