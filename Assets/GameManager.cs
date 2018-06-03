@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject cutItem;
     public GameObject GoodPotItem;
     public GameObject BadPotItem;
+    public AudioSource AddScoreSound;
 
     public void TakeObject(GameObject takenObject)
     {
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
 		//if (!isClient) {
 			Score += 15;
             ScoreUi.text = "PLAYER1 SCORE:" + Score;
+        AddScoreSound.Play();
 		//} else {
 			//ClientScore += 15;
 		    //ClientScoreUi.text = "Player2Score:" + ClientScore;
