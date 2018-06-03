@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class GameManager : NetworkBehaviour
+public class GameManager : MonoBehaviour
 {
     public enum PlayerState
     {
@@ -12,10 +12,7 @@ public class GameManager : NetworkBehaviour
         notTake // 空
     }
     
-    [SyncVar(hook="ScoreChanged")]
     public int Score;
-	[SyncVar(hook = "ClientScoreChanged")]
-	public int ClientScore;
 
     public Text ScoreUi;
     public Text ClientScoreUi;
@@ -77,7 +74,7 @@ public class GameManager : NetworkBehaviour
     {
 		//if (!isClient) {
 			Score += 15;
-            ScoreUi.text = "Player1Score:" + Score;
+            ScoreUi.text = "PLAYER1 SCORE:" + Score;
 		//} else {
 			//ClientScore += 15;
 		    //ClientScoreUi.text = "Player2Score:" + ClientScore;
@@ -93,7 +90,7 @@ public class GameManager : NetworkBehaviour
             {
                 Score = 0;
             }
-            ScoreUi.text = "Player1Score:" + Score;         
+            ScoreUi.text = "PLAYER1 SCORE:" + Score;         
 		//}
 		//else
 		//{
@@ -108,14 +105,9 @@ public class GameManager : NetworkBehaviour
 
 	void ScoreChanged(int value) {
 		Score = value;
-		ScoreUi.text = "Player1Score:" + Score;
+		ScoreUi.text = "PLAYER1 SCORE:" + Score;
 	}
 
-	void ClientScoreChanged(int value)
-    {
-        ClientScore = value;
-        ClientScoreUi.text = "Player2Score:" + ClientScore;
-    }
 
     void Awake()
     {

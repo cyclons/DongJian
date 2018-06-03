@@ -8,7 +8,7 @@ public class CompetitionSystem : MonoBehaviour
     public Text CountingTimeUi;
     public GameObject StartBtn;
 
-    private float CountingTimer = 300;
+    private float CountingTimer = 60;
     
     private bool isStart=false;
 
@@ -23,7 +23,7 @@ public class CompetitionSystem : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	    CountingTimer = 300;
+	    CountingTimer = 60;
 	}
 	
 	// Update is called once per frame
@@ -38,7 +38,7 @@ public class CompetitionSystem : MonoBehaviour
 	    {
             StartBtn.SetActive(true);
 	        isStart = false;
-	        CountingTimer = 300;
+	        CountingTimer = 60;
 	        if (GameManager.Instance.Score > bestScore)
 	        {
 	            bestScore = GameManager.Instance.Score;
